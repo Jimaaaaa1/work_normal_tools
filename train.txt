@@ -1,0 +1,17 @@
+ CUDA_VISIBLE_DEVICES=7 nohup python -m  torch.distributed.launch \
+ --nproc_per_node=1 \
+ --master_port 13350 \
+ --use_env train.py \
+ --data-path /home/zmy/cifar100 \
+ --model_config model_config/ViT_supernet_tiny.yaml \
+ --data-set CIFAR100 \
+ --gp \
+ --change_qkv \
+ --distribution_warmup_epoch 0 \
+ --warmup-epochs 0 \
+  --peg_position \
+  --no_abs_pos \
+ --batch-size 128 \
+ --split_num 5000 \
+  --output_dir logs_tiny \
+  --mode supernet >v0_test.log 2>&1 &
